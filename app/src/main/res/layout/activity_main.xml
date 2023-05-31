@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+<!--        1. 변수만들기 아이템 클래스-->
+<!--        3. 아이템클래스만들고 와서 type을 지정한다. 값은 누가 넣어주냐? 바인딩(데이터바인딩유틸을이용해서 만든다)-->
+        <variable
+            name="vm"
+            type="com.nha2023.ex98databindingbidnigadapter.MyViewModel" />
+    </data>
+
+
+    <!--    2. 화면 UI layout-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:padding="16dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <!-- 1)서버 URL 데이터와 바인딩하는 이미지뷰-->
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:imageUrl="@{vm.img}"/>
+
+        <!-- 9. app:imageUrl치면 자동으로 나온다. -->
+
+        <!-- 5. 그러나.. src 속성은 res폴더안에 있는 이미지만 보여 줄 수 있음 -->
+        <!-- 대부분의 이미지는 서버에 있는 경우가 많기에 src 속성 사용이 불가능 -->
+        <!-- data binding을 하려면 xml의 속성으로 변수와 연결해야함 -->
+        <!-- 하지만 ImageView에는 URL을 설정하는 속성이 기본적으로는 제공되지 않음 -->
+        <!-- 개발자가 원하는 속성을 직접 만들수 있는 문법이 존재함 : @bindingAdapter라고 부름-->
+        <!-- 바인딩아탑터를 설정하는 클래스를 정의하기 -->
+
+<!--        11. -->
+        <Button
+            android:text="hi"
+            android:onClick="@{v->vm.changeImage()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+<!--        13. 리사이클러뷰에 대량의 데이터 (List or Array) 바인딩 하는 custom 속성 지정-->
+        <androidx.recyclerview.widget.RecyclerView
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:itemList="@{vm.items}"/>
+
+        <Button
+            android:text="add items"
+            android:onClick="@{v->vm.addItem()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</layout>

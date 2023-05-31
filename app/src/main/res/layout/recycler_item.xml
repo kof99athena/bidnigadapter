@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--15. xml에서 사용할 데이터 변수 선언-->
+    <data>
+        <variable
+            name="item"
+            type="com.nha2023.ex98databindingbidnigadapter.Item" />
+    </data>
+
+<!--    16. 아이템뷰의 모양-->
+    <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="0.5dp"
+        app:strokeColor="@color/black"
+        app:contentPadding="16dp"
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="5dp"
+                android:text="@{item.title}"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:padding="4dp"
+                android:text="@{item.message}"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
